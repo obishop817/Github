@@ -2,7 +2,7 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "5zVa7AtgBHW":
+      case "6Qm2RSC1rym":
         Script1();
         break;
   }
@@ -18,7 +18,7 @@ var cname = player.GetVar("courseName");
 
 var score = player.GetVar("score");
 
-var urlstring = ("story_content/external_files/certificate.html?uname="+ uname +"&cname=" + cname + " &score="+score);
+var urlstring = ("Github/story_content/external_files/certificate.html?uname="+ uname +"&cname=" + cname + " &score="+score);
 
 window.open(urlstring,"certificate.html");
 }
