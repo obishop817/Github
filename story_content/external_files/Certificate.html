@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Certificate of completion</title>
+<style>
+.signature, .title { 
+float:left;
+  border-top: 1px solid #000;
+  width: 200px; 
+  text-align: center;
+}
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+</style>
+<script type="text/javascript">
+
+	function getAllUrlParams(url) {
+  // get query string from url (optional) or window
+  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+  // we'll store the parameters here
+  var obj = {};
+  // if query string exists
+  if (queryString) {
+    // stuff after # is not part of query string, so get rid of it
+    queryString = queryString.split('#')[0];
+    // split our query string into its component parts
+    var arr = queryString.split('&');
+    for (var i = 0; i < arr.length; i++) {
+      // separate the keys and the values
+      var a = arr[i].split('=');
+      // set parameter name and value (use 'true' if empty)
+      var paramName = a[0];
+      var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+      // (optional) keep case consistent
+     
+      // if the paramName ends with square brackets, e.g. colors[] or colors[2]
+      if (paramName.match(/\[(\d+)?\]$/)) {
+        // create key if it doesn't exist
+        var key = paramName.replace(/\[(\d+)?\]/, '');
+        if (!obj[key]) obj[key] = [];
+        // if it's an indexed array e.g. colors[2]
+        if (paramName.match(/\[\d+\]$/)) {
+          // get the index value and add the entry at the appropriate position
+          var index = /\[(\d+)\]/.exec(paramName)[1];
+          obj[key][index] = paramValue;
+        } else {
+          // otherwise add the value to the end of the array
+          obj[key].push(paramValue);
+        }
+      } else {
+        // we're dealing with a string
+        if (!obj[paramName]) {
+          // if it doesn't exist, create property
+          obj[paramName] = paramValue;
+        } else if (obj[paramName] && typeof obj[paramName] === 'string'){
+          // if property does exist and it's a string, convert it to an array
+          obj[paramName] = [obj[paramName]];
+          obj[paramName].push(paramValue);
+        } else {
+          // otherwise add the property
+          obj[paramName].push(paramValue);
+        }
+      }
+    }
+  }
+
+  return obj;
+}
+//define variables
+var studentName = getAllUrlParams().uname;
+var courseName = getAllUrlParams().cname;
+//var Results.ScorePercent = getAllUrlParams().score;
+
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = mm + '/' + dd + '/' + yyyy;
+
+</script>
+</head>
+<body>
+<center>
+<div style="width:1024px; height:680px; padding:0px; text-align:center; border: 5px solid #787878">
+
+       <div style="background-color: #48aee7; height:100px; padding-top: 50px; color:#ffffff;"><span style="font-size:50px; font-weight:bold">Certificate of Completion</span></div>
+       <br><br>
+       <span style="font-size:25px"><i>This is to certify that</i></span>
+       <br><br>
+       <span style="font-size:30px;color:#48aee7;"><b><script type="text/javascript">document.write(unescape(studentName))</script></b></span><br/><br/>
+       <span style="font-size:25px"><i>has completed the course</i></span> <br/><br/>
+       <span style="font-size:30px;color:#48aee7;"><b><script type="text/javascript">document.write(unescape(courseName))</script><b></span> <br/><br/>
+       <span style="font-size:20px">with a Satisfactory Score of at least 80%</i></span> <br/><br/><br/><br/>
+	   
+
+<table style="margin-left:50px;float:left">
+<tr>
+<td style="text-align:center"><span><b><script type="text/javascript">document.write(today);</script></b></td>
+</tr>
+<tr>
+<td style="width:200px;float:left;border:0;border-bottom:1px solid #d1c08e;"></td>
+</tr>
+<tr>
+<td><span><b>Completed Date</b></td>
+</tr>
+</table>
+<table style="margin-right:50px;float:right">
+<tr>
+<td><span><b><script type="text/javascript">document.write(unescape(studentName))</script></b></td>
+</tr>
+<tr>
+<td style="width:200px;float:right;border:0;border-bottom:1px solid #d1c08e;"></td>
+</tr>
+<tr>
+<td style="text-align:center"><span><b>Signature</b></td>
+</tr>
+</table>
+<div style="text-align:center;padding-top: 75px;"><img src="https://atelierlks.com/wp-content/uploads/2020/10/99gen_arc.png" width="150px"></div>
+</div>
+</center>
+</body>
+</html>
